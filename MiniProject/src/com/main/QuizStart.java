@@ -19,30 +19,14 @@ public class QuizStart {
 
 	public int marks;
 
-	
-	
-	public void getResult(int marks) {
-		if (this.marks >= 8 && this.marks <= 10) {
-			System.out.println("Excellent performance: You scored Garde A.");
-		}else if (this.marks >=6 && this.marks < 8) {
-			System.out.println("Good performance: You scored Grade B.");
-		}else if (this.marks == 5) {
-			System.out.println("Average performance: You scored Grade C.");
-		}else {
-			System.out.println("You have failed the test.");
-		}
-	}
-
 	public void startQuiz() throws SQLException {
 
-		System.out.println("Quiz started");
-
-		QuizStart qStart = new QuizStart();
+		StudentResult sResult = new StudentResult();
 		StudentDetails studentDetails = new StudentDetails();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter student name");
 		String s_name = scan.next();
-		//studentDetails.StudentDetail();
+		
 
 		ArrayList<Integer> arrayList = new ArrayList<>();
 
@@ -51,21 +35,14 @@ public class QuizStart {
 			arrayList.add(i);
 		}
 
-		/*
-		 * // printing before shuffling for (Integer integer : arrayList) {
-		 * System.out.println(integer); }
-		 */
-
 		// Shuffling the arraylist
 		Collections.shuffle(arrayList);
 
-		// printing after shuffling
-		for (Integer integer : arrayList) {
-			System.out.println(integer);
-		}
-
+		
 		// looping to get particular question from database
+		int questionNumber = 1;
 		for (int j = 0; j < arrayList.size(); j++) {
+
 			Scanner scanner = new Scanner(System.in);
 			ConnectionMiniProject cMiniProject1 = new ConnectionMiniProject();
 			Connection connection1 = cMiniProject1.getconnection();
@@ -78,36 +55,42 @@ public class QuizStart {
 
 				// printing question onto the console using resultset object
 				while (resultSet.next()) {
-					System.out.println("Question " + resultSet.getString(1) + " :");
+					System.out.println("Question " + questionNumber + " :");
 					System.out.println(resultSet.getString(2));
 					System.out.println("A: " + resultSet.getString(3));
 					System.out.println("B: " + resultSet.getString(4));
 					System.out.println("C: " + resultSet.getString(5));
 					System.out.println("D: " + resultSet.getString(6));
 					// String tempCheck = resultSet.getString(7);
-					System.out.println("Enter the answer from above given choices");
+					System.out.println("Select A/B/C/D from above given options");
 					String answer = scanner.next();
-					if (resultSet.getString(7).equalsIgnoreCase(answer)) {
-						marks++;
+					
+					if (answer.charAt(0) == 'A' || answer.charAt(0) == 'B' || answer.charAt(0) == 'C'
+							|| answer.charAt(0) == 'D' || answer.charAt(0) == 'a' || answer.charAt(0) == 'b'
+							|| answer.charAt(0) == 'c' || answer.charAt(0) == 'd') {
+						if (resultSet.getString(7).equalsIgnoreCase(answer)) {
+							marks++;
+						} else {
+							break;
+						}
+
 					} else {
+						System.out.println("Invalid option selected ... please select from A/B/C/D only");
+						j--;
+						questionNumber--;
 						break;
 					}
-
 				}
 
-				// doubtful
-
 			} catch (SQLException e) {
-
 				e.printStackTrace();
 			}
+			questionNumber++;
 		}
-		studentDetails.StudentDetail(s_name,marks);
-		System.out.println("MArks = " + marks);
-		System.out.println("You have successfully completed the Quiz");
-		
-		qStart.getResult(marks);
-		
+		studentDetails.StudentDetail(s_name, marks);
+		System.out.println("Marks = " + marks);
+		sResult.getResult(marks);
+
 	}
 
 }

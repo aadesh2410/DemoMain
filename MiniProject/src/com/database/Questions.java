@@ -29,7 +29,7 @@ public class Questions {
 			prepareStatement1.setString(3, " JRE");
 			prepareStatement1.setString(4, " JDK");
 			prepareStatement1.setString(5, "JDB");
-			prepareStatement1.setString(6, "JDB");
+			prepareStatement1.setString(6, "D");
 			prepareStatement1.executeUpdate();
 			// question 2
 			PreparedStatement prepareStatement2 = connection.prepareStatement(
@@ -40,7 +40,7 @@ public class Questions {
 			prepareStatement2.setString(3, "Architecture Neutral");
 			prepareStatement2.setString(4, "Use of pointers");
 			prepareStatement2.setString(5, "Object-oriented");
-			prepareStatement2.setString(6, "Use of pointers");
+			prepareStatement2.setString(6, "C");
 			prepareStatement2.executeUpdate();
 
 			// question 3
@@ -52,7 +52,7 @@ public class Questions {
 			prepareStatement3.setString(3, "int");
 			prepareStatement3.setString(4, "long");
 			prepareStatement3.setString(5, "void");
-			prepareStatement3.setString(6, "Object");
+			prepareStatement3.setString(6, "A");
 			prepareStatement3.executeUpdate();
 
 			// question 4
@@ -64,7 +64,7 @@ public class Questions {
 			prepareStatement4.setString(3, "Not a Number");
 			prepareStatement4.setString(4, "Infinity");
 			prepareStatement4.setString(5, "Run time exception");
-			prepareStatement4.setString(6, "Run time exception");
+			prepareStatement4.setString(6, "D");
 			prepareStatement4.executeUpdate();
 
 			// question 5
@@ -76,7 +76,7 @@ public class Questions {
 			prepareStatement5.setString(3, "DriverManager, Driver, Connection, and Statement");
 			prepareStatement5.setString(4, "DriverManager, Statement, and ResultSet");
 			prepareStatement5.setString(5, "DriverManager, Connection, Statement, and ResultSet");
-			prepareStatement5.setString(6, "DriverManager, Driver, Connection, Statement, and ResultSet");
+			prepareStatement5.setString(6, "A");
 			prepareStatement5.executeUpdate();
 
 			// question 6
@@ -88,7 +88,7 @@ public class Questions {
 			prepareStatement6.setString(3, "rdb and javax.rdb");
 			prepareStatement6.setString(4, "jdbc and java.jdbc.sql");
 			prepareStatement6.setString(5, "sql and javax.sql");
-			prepareStatement6.setString(6, "sql and javax.sql");
+			prepareStatement6.setString(6, "D");
 			prepareStatement6.executeUpdate();
 
 			// question 7
@@ -100,7 +100,7 @@ public class Questions {
 			prepareStatement7.setString(3, "OutOfMemoryError");
 			prepareStatement7.setString(4, "MemoryOutOfBoundsException");
 			prepareStatement7.setString(5, "MemoryFullException");
-			prepareStatement7.setString(6, "OutOfMemoryError");
+			prepareStatement7.setString(6, "B");
 			prepareStatement7.executeUpdate();
 
 			// question 8
@@ -112,7 +112,7 @@ public class Questions {
 			prepareStatement8.setString(3, "continue");
 			prepareStatement8.setString(4, "for()");
 			prepareStatement8.setString(5, "if()");
-			prepareStatement8.setString(6, "if()");
+			prepareStatement8.setString(6, "D");
 			prepareStatement8.executeUpdate();
 
 			// question 9
@@ -124,7 +124,7 @@ public class Questions {
 			prepareStatement9.setString(3, "Abstractclass");
 			prepareStatement9.setString(4, "Objectclass");
 			prepareStatement9.setString(5, "String");
-			prepareStatement9.setString(6, "Objectclass");
+			prepareStatement9.setString(6, "C");
 			prepareStatement9.executeUpdate();
 
 			// question 10
@@ -136,7 +136,7 @@ public class Questions {
 			prepareStatement10.setString(3, "java.system");
 			prepareStatement10.setString(4, "java.lang");
 			prepareStatement10.setString(5, "java.util");
-			prepareStatement10.setString(6, "java.lang");
+			prepareStatement10.setString(6, "C");
 			prepareStatement10.executeUpdate();
 
 			// printing query insertion message
