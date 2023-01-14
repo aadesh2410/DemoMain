@@ -14,34 +14,47 @@ import java.util.Scanner;
 
 import com.database.ConnectionMiniProject;
 import com.database.StudentDetails;
-import com.mysql.cj.protocol.Resultset;
 
 public class QuizStart {
 
-	int marks;
+	public int marks;
 
-	public void setGrades(int score) {
+	
+	
+	public void getResult(int marks) {
 		if (this.marks >= 8 && this.marks <= 10) {
-
+			System.out.println("Excellent performance: You scored Garde A.");
+		}else if (this.marks >=6 && this.marks < 8) {
+			System.out.println("Good performance: You scored Grade B.");
+		}else if (this.marks == 5) {
+			System.out.println("Average performance: You scored Grade C.");
+		}else {
+			System.out.println("You have failed the test.");
 		}
 	}
 
 	public void startQuiz() throws SQLException {
 
+		System.out.println("Quiz started");
+
+		QuizStart qStart = new QuizStart();
 		StudentDetails studentDetails = new StudentDetails();
-		studentDetails.StudentDetail();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter student name");
+		String s_name = scan.next();
+		//studentDetails.StudentDetail();
 
 		ArrayList<Integer> arrayList = new ArrayList<>();
 
 		// Adding question_id's serially into arraylist
-		for (int i = 0; i < 10; i++) {
+		for (int i = 1; i <= 10; i++) {
 			arrayList.add(i);
 		}
 
-		// printing before shuffling
-		for (Integer integer : arrayList) {
-			System.out.println(integer);
-		}
+		/*
+		 * // printing before shuffling for (Integer integer : arrayList) {
+		 * System.out.println(integer); }
+		 */
 
 		// Shuffling the arraylist
 		Collections.shuffle(arrayList);
@@ -52,7 +65,7 @@ public class QuizStart {
 		}
 
 		// looping to get particular question from database
-		for (int i = 0; i < arrayList.size(); i++) {
+		for (int j = 0; j < arrayList.size(); j++) {
 			Scanner scanner = new Scanner(System.in);
 			ConnectionMiniProject cMiniProject1 = new ConnectionMiniProject();
 			Connection connection1 = cMiniProject1.getconnection();
@@ -60,7 +73,7 @@ public class QuizStart {
 			ResultSet resultSet = null;
 			try {
 				preparedStatement = connection1.prepareStatement("SELECT * FROM question WHERE question_id = ?");
-				preparedStatement.setInt(1, arrayList.get(i));
+				preparedStatement.setInt(1, arrayList.get(j));
 				resultSet = preparedStatement.executeQuery();
 
 				// printing question onto the console using resultset object
@@ -72,26 +85,29 @@ public class QuizStart {
 					System.out.println("C: " + resultSet.getString(5));
 					System.out.println("D: " + resultSet.getString(6));
 					// String tempCheck = resultSet.getString(7);
+					System.out.println("Enter the answer from above given choices");
+					String answer = scanner.next();
+					if (resultSet.getString(7).equalsIgnoreCase(answer)) {
+						marks++;
+					} else {
+						break;
+					}
+
 				}
-				System.out.println("Enter the answer from above given option");
-				String answer = scanner.next();
+
 				// doubtful
-				if (resultSet.getString(7) == answer) {
-					marks++;
-				}
 
 			} catch (SQLException e) {
 
 				e.printStackTrace();
-			} finally {
-				connection1.close();
-				preparedStatement.close();
-				// scanner.close();
-				resultSet.close();
 			}
-			//scanner.close();
 		}
-
+		studentDetails.StudentDetail(s_name,marks);
+		System.out.println("MArks = " + marks);
+		System.out.println("You have successfully completed the Quiz");
+		
+		qStart.getResult(marks);
+		
 	}
 
 }

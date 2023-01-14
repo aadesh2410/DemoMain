@@ -21,7 +21,7 @@ public class Main {
 		
 		
 		/*
-		 * 1. quize should be started
+		 * 1. quiz should be started
 		 * 2. student table should be updated
 		 * 3. all questions must be poped form the database
 		 * 4. marks value must be incremented if correct ans are given 
