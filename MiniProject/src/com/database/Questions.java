@@ -1,27 +1,42 @@
 package com.database;
 
 import java.sql.Connection;
-//import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.util.Scanner;
+import java.sql.SQLException;
 
 /*
-* 1. Adding 10MCQ questions to the database table named Question:
+* Adding 10MCQ questions to the database table named question:
+* question table outline is as follows
+* Table name : question
+* 	question_id		question	option_A	option_B	option_C	option_D	correct_Answer
+* 1.
+* 2.
+* 3.
 * 
+* USerQuestion method must be called only once, or Database will get updated by 10 question everytime program is executed.
 */
 public class Questions {
 	// method
 
-	public void UserQuestion() {
+	public void UserQuestion() throws SQLException {
 
 		// loading driver
 		ConnectionMiniProject cMiniProject = new ConnectionMiniProject();
 		Connection connection = cMiniProject.getconnection();
+		PreparedStatement prepareStatement1 = null;
+		PreparedStatement prepareStatement2 = null;
+		PreparedStatement prepareStatement3 = null;
+		PreparedStatement prepareStatement4 = null;
+		PreparedStatement prepareStatement5 = null;
+		PreparedStatement prepareStatement6 = null;
+		PreparedStatement prepareStatement7 = null;
+		PreparedStatement prepareStatement8 = null;
+		PreparedStatement prepareStatement9 = null;
+		PreparedStatement prepareStatement10 = null;
 		try {
 			// Prepared statement ---question 1
-			PreparedStatement prepareStatement1 = connection.prepareStatement(
+			prepareStatement1 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement1.setString(1, "___ is used to find and fix bugs in the Java programs");
@@ -32,7 +47,7 @@ public class Questions {
 			prepareStatement1.setString(6, "D");
 			prepareStatement1.executeUpdate();
 			// question 2
-			PreparedStatement prepareStatement2 = connection.prepareStatement(
+			prepareStatement2 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement2.setString(1, "Which of the following is not a Java features?");
@@ -44,7 +59,7 @@ public class Questions {
 			prepareStatement2.executeUpdate();
 
 			// question 3
-			PreparedStatement prepareStatement3 = connection.prepareStatement(
+			prepareStatement3 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement3.setString(1, "What is the return type of the hashCode() method in the Object class? ");
@@ -56,7 +71,7 @@ public class Questions {
 			prepareStatement3.executeUpdate();
 
 			// question 4
-			PreparedStatement prepareStatement4 = connection.prepareStatement(
+			prepareStatement4 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement4.setString(1, " What does the expression float a = 35 / 0 return? ");
@@ -68,7 +83,7 @@ public class Questions {
 			prepareStatement4.executeUpdate();
 
 			// question 5
-			PreparedStatement prepareStatement5 = connection.prepareStatement(
+			prepareStatement5 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement5.setString(1, " What are the major components of the JDBC? ");
@@ -80,7 +95,7 @@ public class Questions {
 			prepareStatement5.executeUpdate();
 
 			// question 6
-			PreparedStatement prepareStatement6 = connection.prepareStatement(
+			prepareStatement6 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement6.setString(1, " Select the packages in which JDBC classes are defined?");
@@ -92,7 +107,7 @@ public class Questions {
 			prepareStatement6.executeUpdate();
 
 			// question 7
-			PreparedStatement prepareStatement7 = connection.prepareStatement(
+			prepareStatement7 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement7.setString(1, " Which exception is thrown when java is out of memory?");
@@ -104,7 +119,7 @@ public class Questions {
 			prepareStatement7.executeUpdate();
 
 			// question 8
-			PreparedStatement prepareStatement8 = connection.prepareStatement(
+			prepareStatement8 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement8.setString(1, " Which of these are selection statements in Java?");
@@ -116,7 +131,7 @@ public class Questions {
 			prepareStatement8.executeUpdate();
 
 			// question 9
-			PreparedStatement prepareStatement9 = connection.prepareStatement(
+			prepareStatement9 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement9.setString(1, "Which of the following is a superclass of every class in Java");
@@ -128,7 +143,7 @@ public class Questions {
 			prepareStatement9.executeUpdate();
 
 			// question 10
-			PreparedStatement prepareStatement10 = connection.prepareStatement(
+			prepareStatement10 = connection.prepareStatement(
 					"INSERT INTO question(question, option_A, option_B,option_C,option_D,correct_Answer) VALUES (?,?,?,?,?,?)");
 
 			prepareStatement10.setString(1, "Which of these packages contains the exception Stack Overflow in Java? ");
@@ -142,26 +157,20 @@ public class Questions {
 			// printing query insertion message
 			System.out.println("Insertion of questions done");
 
-//			// resultset
-//			PreparedStatement pSelect1 = connection.prepareStatement("SELECT * FROM question where question_id = '1'");
-//			ResultSet resultSet = pSelect1.executeQuery();
-//
-//			System.out.println("db updated");
-//			// using resultset object
-//			while (resultSet.next()) {
-//				System.out.println("Question >>" + resultSet.getString(2));
-//				System.out.println("Options are as follows");
-//				System.out.println("Option A : " + resultSet.getString(3));
-//				System.out.println("Option B : " + resultSet.getString(4));
-//				System.out.println("Option C : " + resultSet.getString(5));
-//				System.out.println("Option D : " + resultSet.getString(6));
-//				System.out.println("Correct ans : " + resultSet.getString(7));
-//
-//				System.out.println(marks_count);
-//			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			connection.close();
+			prepareStatement1.close();
+			prepareStatement2.close();
+			prepareStatement3.close();
+			prepareStatement4.close();
+			prepareStatement5.close();
+			prepareStatement6.close();
+			prepareStatement7.close();
+			prepareStatement8.close();
+			prepareStatement9.close();
+			prepareStatement10.close();
 		}
 	}
 

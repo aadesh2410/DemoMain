@@ -4,34 +4,39 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/*
+ * 1. Add student details to the database
+ * 2. Table outline is as follows
+ * Table name: student
+ * 		
+ * 		student_id	student_name	student_marks
+ * 1.
+ * 2.
+ */
+
 public class StudentDetails {
 
 	ConnectionMiniProject cMiniProject = new ConnectionMiniProject();
 	Connection connection = cMiniProject.getconnection();
 
-	// take student details such as
-	// student_id, student_name
-
+	//name and marks are passed upon by Quiz class
 	public void StudentDetail(String name, int marks) throws SQLException {
-		// Scanner scanner = new Scanner(System.in);
 
 		PreparedStatement preparedStatement = null;
 
 		try {
-			// System.out.println("Enter student name");
+
 			preparedStatement = connection
 					.prepareStatement("INSERT INTO Student (student_name,student_marks) VALUES (?,?)");
 			preparedStatement.setString(1, name);
 			preparedStatement.setInt(2, marks);
 			preparedStatement.executeUpdate();
-//			PreparedStatement preparedStatement1=connection.prepareStatement("INSERT INTO Student (student_marks) VALUES (?)");
-//			preparedStatement1.setInt(1, marks);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} finally {
-			// scanner.close();
+
 			connection.close();
 			preparedStatement.close();
 
