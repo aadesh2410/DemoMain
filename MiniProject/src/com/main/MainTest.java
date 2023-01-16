@@ -11,9 +11,10 @@ public class MainTest {
 
 	public static void main(String[] args) {
 
-		/*
-		 * Questions questions = new Questions(); questions.UserQuestion();
-		 */
+		
+		Questions questions = new Questions();
+		questions.UserQuestion();
+		 
 		// creating required objects
 		WelcomeQuiz welcomeQuiz = new WelcomeQuiz();
 		try {
